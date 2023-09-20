@@ -4,6 +4,32 @@
 *  MIT license, see LICENSE file for details
 */
 
+/*@import url('fonts/SourceCodePro-Regular.ttf');*/
+/*@import url('fonts/SourceSans3-Regular.ttf');*/
+
+/* Fonts */
+@font-face {
+    font-family: "Main";
+    src: url(/fonts/SourceSans3-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Main";
+    src: url(/fonts/SourceSans3-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Code";
+    src: url(/fonts/SourceCodePro-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Code";
+    src: url(/fonts/SourceCodePro-Bold.ttf);
+    font-weight: bold;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,8 +39,17 @@
 body {
     background: #fff;
     color: #000;
-    font-family: Helvetica, Arial;
+    font-family: "Main", Helvetica, Arial;
     text-align: center;
+}
+
+.content a {
+    text-decoration: none;
+    border-bottom: 3px solid #037aff;
+}
+
+.content a:hover {
+    color: #037aff;
 }
 
 .wrapper {
@@ -81,11 +116,11 @@ h1 {
 }
 
 h2 {
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 p {
-    margin-bottom: 10px;
+/*    margin-bottom: 10px;*/
 }
 
 a {
@@ -95,6 +130,10 @@ a {
 article h1 a {
     font-size: 34px;
     text-decoration: none;
+}
+
+article h1 a:hover {
+    color: #2d7cf6;
 }
 
 .description {
@@ -176,48 +215,93 @@ footer {
     color: #999;
 }
 
+/* sf symbol */
+.sf-symbol-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sf-symbol-wrapper h2 {
+    margin: 20px 0px;
+}
+
+.sf-symbol-1x {
+    width: 34px;
+    height: 34px;
+    background-color: #2d7cf6;
+    border: 0px solid rgba(100, 100, 100, 1);
+    border-radius: 10px;
+    position: relative;
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+}
+
+.sf-symbol-1x img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: invert(100%) sepia(68%) saturate(139%) hue-rotate(337deg) brightness(118%) contrast(100%);
+}
+
 /* code highlight */
 pre {
+    top: 1.5em;
+    margin-top: 0.5em;
     margin-bottom: 1.5em;
-    background-color: #1a1a1a;
+    background-color: #000000;
     padding: 16px 0;
-    border-radius: 16px;
+    border-radius: 14px;
+}
+
+code {
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 2px 4px;
+    font-family: "Code";
+    font-size: 13px;
+    font-weight: bold;
 }
 
 pre code {
-    font-family: monospace;
+    font-family: "Code", monospace;
+    background-color: inherit;
     display: block;
     padding: 0 20px;
-    color: #a9bcbc;
+    color: #ffffff;
     line-height: 1.4em;
-    font-size: 0.95em;
+    font-size: 1em;
     overflow-x: auto;
     white-space: pre;
+    font-weight: normal;
     -webkit-overflow-scrolling: touch;
 }
 
 pre code .keyword {
-    color: #e73289;
+    color: #cd4aa2;
 }
 
 pre code .type {
-    color: #8281ca;
+    color: #45b0f9;
 }
 
 pre code .call {
-    color: #348fe5;
+    color: #45b0f9;
 }
 
 pre code .property {
-    color: #21ab9d;
+    color: #73f59e;
 }
 
 pre code .number {
-    color: #db6f57;
+    color: #888bf7;
 }
 
 pre code .string {
-    color: #fa641e;
+    color: #ee564f;
 }
 
 pre code .comment {
