@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>vickcoo</title><description>A  Developer</description><link>https://vickcoo.github.io</link><language>en</language><lastBuildDate>Wed, 20 Sep 2023 10:39:29 +0800</lastBuildDate><pubDate>Wed, 20 Sep 2023 10:39:29 +0800</pubDate><ttl>250</ttl><atom:link href="https://vickcoo.github.io/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://vickcoo.github.io/posts/different-between-struct-class</guid><title>Swift Structs and Classes: A Friendly Guide to Their Differences and Similarities</title><description>Dive into the world of Swift programming to struct and class and break down similarities and differences</description><link>https://vickcoo.github.io/posts/different-between-struct-class</link><pubDate>Mon, 18 Sep 2023 22:51:00 +0800</pubDate><content:encoded><![CDATA[<p>When your're delving into the world of Swift programming, you'll inevitably come across two essential concepts: <code>struct</code> and <code>class</code>. In this guide, we'll unravel the mysteries of struct and class, making them easier to understand.</p><h2>Similarities</h2><ul><li>Define properties (that including computed properties &amp; property observer)</li><li>Define method</li><li>Define subscripts to provide access to their value</li><li>Define initializers</li><li>Be extended to expand their functionality beyond a default implementation</li><li>These have the ability to conform to protocols and then provide functionality</li></ul><h2>Differences</h2><p>class have adiitional capabilities that structure don't have.</p><ul><li>Inheritance</li><li>Type casting</li><li>Deinitializers</li><li>ARC (according to class is a Reference Type)</li></ul><p>other difference thing.</p><ul><li>Value Type &amp; Reference Type</li><li>Mutable &amp; Immutable</li><li>Memberwise Initializer</li></ul><h2>Syntax</h2><p>this is the least code to define this struct and class, I'll show you actually example later.</p><pre><code><span class="keyword">struct</span> SomeStruct {
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>vickcoo</title><description>iOS Developer</description><link>https://vickcoo.github.io</link><language>en</language><lastBuildDate>Tue, 24 Oct 2023 19:51:11 +0800</lastBuildDate><pubDate>Tue, 24 Oct 2023 19:51:11 +0800</pubDate><ttl>250</ttl><atom:link href="https://vickcoo.github.io/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://vickcoo.github.io/posts/ARC%20Simply%20Introduction%5Ben%5D</guid><title>ARC</title><description>Dive into the world of Swift programming to struct and class and break down similarities and differences</description><link>https://vickcoo.github.io/posts/ARC%20Simply%20Introduction%5Ben%5D</link><pubDate>Wed, 20 Sep 2023 10:42:00 +0800</pubDate><content:encoded><![CDATA[<p>The ARC fullname is <strong>A</strong>utomatic <strong>R</strong>eference <strong>C</strong>ounting. It's used to manage memory by Swift without manually control every memory</p><p>ARC deallocates an object after lifetime ends. Swift compiler counting by retain/release, retain will increase count, otherwise release will decrease count. Object will deallocates when count go to zero.</p><p>每次建立類別的新實例時，ARC 都會分配一塊記憶體來儲存有關該實例的資訊 Every time you create a new instance of a class, ARC allocates a chunck of memory to store information about that instance</p><p>ARC是自動工作的，所以你不需要參與引用計數，但你確實需要考慮物件之間的關係以避免記憶體洩漏。 ARC work automatically, so you don't need to participle reference counting, but you need to consider relationship of objects to avoid memory leak</p><h1>Reference</h1><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/">The Swift Programming Language (5.9) - Automatic Reference Counting</a></li></ul><hr><h1>what's ARC</h1><h1>why we need that</h1><h1>how to work</h1><h1>Notice</h1><h1>PROS.</h1><h1>CONS.</h1><h1>Example</h1>]]></content:encoded></item><item><guid isPermaLink="true">https://vickcoo.github.io/posts/Swift-Structs-and-Classes-A-Friendly-Guide-to-Their-Differences-and-Similarities%5Ben%5D</guid><title>Swift Structs and Classes: A Friendly Guide to Their Differences and Similarities</title><description>Dive into the world of Swift programming to struct and class and break down similarities and differences</description><link>https://vickcoo.github.io/posts/Swift-Structs-and-Classes-A-Friendly-Guide-to-Their-Differences-and-Similarities%5Ben%5D</link><pubDate>Wed, 20 Sep 2023 10:42:00 +0800</pubDate><content:encoded><![CDATA[<p>When your're delving into the world of Swift programming, you'll inevitably come across two essential concepts: <code>struct</code> and <code>class</code>. In this guide, we'll unravel the mysteries of struct and class, making them easier to understand.</p><h2>Similarities</h2><ul><li>Define properties (that including computed properties &amp; property observer)</li><li>Define method</li><li>Define subscripts to provide access to their value</li><li>Define initializers</li><li>Be extended to expand their functionality beyond a default implementation</li><li>These have the ability to conform to protocols and then provide functionality</li></ul><h2>Differences</h2><p>class have adiitional capabilities that structure don't have.</p><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/inheritance/">Inheritance</a></li><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/typecasting/">Type casting</a></li><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/deinitialization/">Deinitializers</a></li><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/">ARC(Automatic Reference Counting)</a></li></ul><p>other difference thing.</p><ul><li>Value Type &amp; Reference Type</li><li>Mutable &amp; Immutable</li><li>Memberwise Initializer</li></ul><h2>Syntax</h2><p>this is the least code to define this struct and class, I'll show you actually example later.</p><pre><code><span class="keyword">struct</span> SomeStruct {
 }
 <span class="keyword">class</span> SomeClass {
 }
@@ -56,4 +56,62 @@ eric.<span class="property">age</span> = <span class="number">41</span>
         <span class="keyword">self</span>.<span class="property">name</span> = name
     }
 }
-</code></pre><h2>Reference</h2><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures">The Swift Programming Language</a></li></ul>]]></content:encoded></item><item><guid isPermaLink="true">https://vickcoo.github.io/posts/first-post</guid><title>First Post</title><description>A description of my first post.</description><link>https://vickcoo.github.io/posts/first-post</link><pubDate>Mon, 18 Sep 2023 22:51:00 +0800</pubDate><content:encoded><![CDATA[<p>My first post's text.</p>]]></content:encoded></item></channel></rss>
+</code></pre><h2>Reference</h2><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures">The Swift Programming Language</a></li></ul>]]></content:encoded></item><item><guid isPermaLink="true">https://vickcoo.github.io/posts/Swift-Structs-and-Classes-A-Friendly-Guide-to-Their-Differences-and-Similarities%5Bzh-TW%5D</guid><title>Swift Structures &amp; Classes：它們之間的差異和相似之處</title><description>深入Swift程式設計世界，進行Structures和Classes分析相似點和差異</description><link>https://vickcoo.github.io/posts/Swift-Structs-and-Classes-A-Friendly-Guide-to-Their-Differences-and-Similarities%5Bzh-TW%5D</link><pubDate>Wed, 20 Sep 2023 10:42:00 +0800</pubDate><content:encoded><![CDATA[<p>當您深入研究 Swift 程式設計世界時，您將不可避免地遇到兩個基本概念：<code>struct</code>和<code>class</code>。在這篇文章中，我們將揭開它們之間的神秘面紗，使它們更容易理解。</p><h2>相似之處</h2><ul><li>定義屬性(Property)，包含<strong>計算屬性</strong>(Computed Property)跟<strong>屬性觀察器</strong>(Property Observer)</li><li>定義方法(Function)</li><li>定義下標(Subscript)來提供存取資料的方式</li><li>定義建構子(Initializer)</li><li>除了Apple提供的方法，還可以進行自訂義擴充(Extension)額外方法</li><li>它們都可以遵循Protocols</li></ul><h2>差異之處</h2><p>Class有的額外功能，且Structure沒有的</p><ul><li><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi8yfPGo46CAxXFr1YBHaS_D4oQFnoECAoQAQ&url=https%3A%2F%2Fitisjoe.gitbooks.io%2Fswiftgo%2Fcontent%2Fch2%2Finheritance.html&usg=AOvVaw3owmh7jZ4g21R0OnO_JTFl&opi=89978449">繼承</a></li><li><a href="https://tommy60703.gitbooks.io/swift-language-traditional-chinese/content/chapter2/18_Type_Casting.html">型別轉換</a></li><li><a href="https://itisjoe.gitbooks.io/swiftgo/content/ch2/initialization_deinitialization.html#deinitializer">解構式</a></li><li><a href="https://tommy60703.gitbooks.io/swift-language-traditional-chinese/content/chapter2/16_Automatic_Reference_Counting.html">ARC(自動參考計數)</a></li></ul><p>其他不同的地方</p><ul><li>Value Type &amp; Reference Type</li><li>可變的(Mutable) &amp; 不可變的(Immutable)</li><li><a href="https://itisjoe.gitbooks.io/swiftgo/content/ch2/classes_structures.html#memberwise_initializer">Memberwise Initializer</a></li></ul><h2>Syntax</h2><p>這是定義出Structure跟Class最基本的程式碼，後面會繼續為你帶來實際的範例</p><pre><code><span class="keyword">struct</span> SomeStruct {
+}
+<span class="keyword">class</span> SomeClass {
+}
+</code></pre><h2>Value Type &amp; Reference Type</h2><p>Swift中的Structure是Value Type，這代表Structure的實例中的屬性，它們在你的程式碼中傳遞時都是會用複製值</p><pre><code><span class="keyword">struct</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> age: <span class="type">Int</span>
+}
+
+<span class="keyword">let</span> andrew = <span class="type">Person</span>(name: <span class="string">"Andrew"</span>, age: <span class="number">22</span>)
+<span class="keyword">var</span> eric = andrew
+
+eric.<span class="property">age</span> = <span class="number">41</span>
+
+<span class="call">print</span>(andrew.<span class="property">age</span>) <span class="comment">// print: 22</span>
+<span class="call">print</span>(eric.<span class="property">age</span>) <span class="comment">// print: 41</span>
+</code></pre><p>class是Reference Type，跟structure不同的是當你把class的實例指定給另一個變數，會參照到同一個位址，意思不管修改哪一個實例都是修改同一個，可以參考下面範例</p><pre><code><span class="keyword">class</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> age: <span class="type">Int</span>
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>, age: <span class="type">Int</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+        <span class="keyword">self</span>.<span class="property">age</span> = age
+    }
+}
+
+<span class="keyword">let</span> andrew = <span class="type">Person</span>(name: <span class="string">"Andrew"</span>, age: <span class="number">22</span>)
+<span class="keyword">var</span> eric = andrew
+
+eric.<span class="property">age</span> = <span class="number">41</span>
+
+<span class="call">print</span>(andrew.<span class="property">age</span>) <span class="comment">// print: 41</span>
+<span class="call">print</span>(eric.<span class="property">age</span>) <span class="comment">// print: 41</span>
+</code></pre><h2>Initializers</h2><p>在Swift中當你建立structure並且定義了一些屬性，structure會自動產生建構子(Initializer)它有一個專有名詞叫做<a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/">Memberwise Initializer</a>，但是在class中並沒有這麼方便的功能，還是需要自己手動建立</p><pre><code><span class="comment">// struct</span>
+<span class="keyword">struct</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> age: <span class="type">Int</span>
+}
+<span class="keyword">let</span> leo = <span class="type">Person</span>(name: <span class="string">"Leo"</span>, age: <span class="number">32</span>)
+
+<span class="comment">// class</span>
+<span class="keyword">class</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> age: <span class="type">Int</span>
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>, age: <span class="type">Int</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+        <span class="keyword">self</span>.<span class="property">age</span> = age
+    }
+}
+<span class="keyword">let</span> leo = <span class="type">Person</span>(name: <span class="string">"Leo"</span>, age: <span class="number">32</span>)
+</code></pre><h2>Mutating</h2><p>在structure裡預設你不能修改裡面的屬性，可使用關鍵字<code>mutating</code>來達成修改屬性的目的</p><p>可以參考Paul Husdon的這篇文章<a href="https://www.hackingwithswift.com/sixty/7/5/mutating-methods">Mutating methods</a></p><pre><code><span class="keyword">struct</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+
+    <span class="keyword">mutating func</span> setName(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+    }
+}
+</code></pre><h2>Reference</h2><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures">The Swift Programming Language</a></li></ul>]]></content:encoded></item></channel></rss>

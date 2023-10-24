@@ -110,6 +110,40 @@ nav li a.selected {
     color: #fff;
 }
 
+.language-switcher-container {
+    display: inline-block;
+    background-color: #c1c1c2;
+    border-radius: 9px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.language-switcher-container li {
+    display: inline-block;
+}
+
+.language-switcher-container a {
+    color: #000;
+    display: block;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    border-radius: 7px;
+    margin: 2px;
+}
+
+.language-switcher-container li a:hover {
+    background-color: rgba(255,255,255, 0.3);
+    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04);
+    outline: 0.5px solid rgba(0,0,0,0.04);
+}
+.language-switcher-container li a.selected {
+    background-color: #fff;
+    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04);
+    outline: 0.5px solid rgba(0,0,0,0.04);
+}
+
 h1 {
     margin-bottom: 20px;
     font-size: 2em;
@@ -117,10 +151,6 @@ h1 {
 
 h2 {
     margin-top: 20px;
-}
-
-p {
-/*    margin-bottom: 10px;*/
 }
 
 a {
