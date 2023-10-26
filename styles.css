@@ -209,7 +209,7 @@ article h1 a:hover {
 
 .tag-list {
     display: inline-block;
-    margin-bottom: 15px;
+/*    margin-bottom: 15px;*/
 }
 
 .tag-list li,
@@ -251,9 +251,12 @@ footer {
     color: #8a8a8a;
 }
 
-/*.metadata {*/
+.metadata {
 /*    display: inline-block;*/
-/*}*/
+/*    margin-top: 15px;*/
+    margin-bottom: 15px;
+}
+
 .date {
     display: inline-block;
     margin-left: 10px;
@@ -291,6 +294,18 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     filter: invert(100%) sepia(68%) saturate(139%) hue-rotate(337deg) brightness(118%) contrast(100%);
+}
+
+.color-orange {
+    color: orange;
+}
+
+.color-purple {
+    color: darkviolet;
+}
+
+.color-black {
+    color: black;
 }
 
 /* code highlight */
@@ -364,6 +379,15 @@ pre code .dotAccess {
 
 pre code .preprocessing {
     color: #b68a00;
+}
+
+.recommendation-item-list .metadata > a {
+    text-decoration: none;
+    color: #999;
+}
+
+.recommendation-item-list h1 {
+    margin: 0px;
 }
 
 /*@media (prefers-color-scheme: dark) {*/
