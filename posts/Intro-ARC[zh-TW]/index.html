@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta property="og:site_name" content="vickcoo"/><link rel="canonical" href="https://vickcoo.github.io/posts/Intro-ARC%5Bzh-TW%5D"/><meta name="twitter:url" content="https://vickcoo.github.io/posts/Intro-ARC%5Bzh-TW%5D"/><meta property="og:url" content="https://vickcoo.github.io/posts/Intro-ARC%5Bzh-TW%5D"/><title>將記憶體煩惱留給ARC | vickcoo</title><meta name="twitter:title" content="將記憶體煩惱留給ARC | vickcoo"/><meta property="og:title" content="將記憶體煩惱留給ARC | vickcoo"/><meta name="description" content="在Swift中，ARC是一個重要的概念，它負責管理記憶體，確保不再使用的物件能夠被正確釋放。本文將詳細解釋ARC的工作原理，以及如何避免常見的記憶體洩漏問題。"/><meta name="twitter:description" content="在Swift中，ARC是一個重要的概念，它負責管理記憶體，確保不再使用的物件能夠被正確釋放。本文將詳細解釋ARC的工作原理，以及如何避免常見的記憶體洩漏問題。"/><meta property="og:description" content="在Swift中，ARC是一個重要的概念，它負責管理記憶體，確保不再使用的物件能夠被正確釋放。本文將詳細解釋ARC的工作原理，以及如何避免常見的記憶體洩漏問題。"/><meta name="twitter:card" content="summary"/><link rel="stylesheet" href="/styles.css" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="shortcut icon" href="/images/favicon.png" type="image/png"/><link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to vickcoo"/><meta name="twitter:image" content="https://vickcoo.github.io/images"/><meta property="og:image" content="https://vickcoo.github.io/images"/></head><body class="item-page"><header><div class="wrapper"><a href="/" class="site-name">vickcoo</a><p>iOS Developer</p><nav><ul><li><a href="/posts" class="selected">Posts</a></li><li><a href="/about">About</a></li><li><a href="/message">Message</a></li></ul></nav></div></header><div class="wrapper"><article><h1>將記憶體煩惱留給ARC</h1><div class="metadata"><ul class="tag-list"><li><a href="/tags/swift">swift</a></li></ul><span class="date">Published on Oct 26, 2423</span></div><div class="language-switcher-container"><ul><li><a href="/posts/Intro-ARC[en]">en</a></li><li><a href="/posts/Intro-ARC[zh-TW]" class="selected">zh-TW</a></li></ul></div><div class="content"><p><a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0">自動引用計數</a>（Automatic Reference Counting，簡稱<strong>ARC</strong>）是Swift語言的一個關鍵功能，它負責管理物件在記憶體中的生命週期，以確保記憶體資源能夠被有效地分配和釋放。ARC是Swift的一個重要特性，使開發者無需手動管理記憶體，從而減少了記憶體洩漏和釋放不當的風險。</p><ul><li>Swift會用它自動管理記憶體，無需我們手動操作，但你確實要考慮物件之間的關係以避免記憶體洩漏（Memory Leak）</li><li>每次建立一個類別的實例時，ARC會分配一塊記憶體來儲存關於這個實例的所有資料</li><li>ARC會在Lifetime結束時自動釋放（deallocate）記憶體中的物件</li></ul><h2>ARC工作原理</h2><p>它的運作方式很簡單，當有一個物件被創立的時候，它的ARC會初始化為1，當有新的引用指向這個物件時就會加1，當一個引用不再存在時ARC就會減1，很簡單的加減法吧！</p><p>這邊用兩種方式寫個故事幫助你們瞭解</p><h3>文字版</h3><p>有一天，David走在路上，看到了閃亮的<code>iPhone XR</code>。他被它的功能和外觀所吸引，決定拿走了它並成為了它的持有者。這個時候，因為David引用了<code>iPhone XR</code>iPhone的ARC增加到2。</p><p>過了一會，John也走過來，他看到了這支<code>iPhone XR</code>，並說這支手機是他的，因此他要求對方將它交給John。現在，iPhone的ARC變成了3。</p><p>然而，這個情況並不持久。不久後，一位警察出現，調查了手機的來源，發現這支iPhone根本不屬於David或John。他們兩人被告知不能再持有這支手機，因為它並不屬於他們中的任何一個。於是，David和John都取消了對iPhone的引用，ARC迅速降為1。</p><p>最後也不知道這支手機是誰的，所以決定進行銷毀，<code>iPhone XR</code>也取消了對iPhone的引用，所以ARC歸零從此就消失在這個世界上(從記憶體中釋放)。</p><h3>程式碼版</h3><p>故事中用到的<code>Phone</code>跟<code>Person</code>的類別可以至下一段程式碼查看</p><pre><code><span class="comment">//有一天，David走在路上，看到了閃亮的`iPhone XR`。他被它的功能和外觀所吸引，決定拿走了它並成為了它的持有者。這個時候，因為David引用了`iPhone XR`iPhone的ARC增加到2。</span>
+<span class="keyword">var</span> iPhone: <span class="type">Phone</span>? = <span class="type">Phone</span>(name: <span class="string">"iPhone XR"</span>) <span class="comment">// ARC = 1</span>
+<span class="keyword">var</span> david: <span class="type">Person</span> = <span class="type">Person</span>(name: <span class="string">"David"</span>)
+david.<span class="property">phone</span> = iPhone <span class="comment">// ARC = 2
+
+//過了一會，John也走過來，他看到了這支`iPhone XR`，並說這支手機是他的，因此他要求對方將它交給John。現在，iPhone的ARC變成了3。</span>
+<span class="keyword">var</span> john: <span class="type">Person</span> = <span class="type">Person</span>(name: <span class="string">"John"</span>)
+john.<span class="property">phone</span> = iPhone <span class="comment">// ARC = 3
+
+//然而，這個情況並不持久。不久後，一位警察出現，調查了手機的來源，發現這支iPhone根本不屬於David或John。他們兩人被告知不能再持有這支手機，因為它並不屬於他們中的任何一個。於是，David和John都取消了對iPhone的引用，ARC迅速降為1。</span>
+david.<span class="property">phone</span> = <span class="keyword">nil</span> <span class="comment">// ARC = 2</span>
+john.<span class="property">phone</span> = <span class="keyword">nil</span> <span class="comment">// ARC = 1
+
+//最後也不知道這支手機是誰的，所以決定進行銷毀，`iPhone XR`也取消了對iPhone的引用，所以ARC歸零從此就消失在這個世界上(從記憶體中釋放)。</span>
+iPhone = <span class="keyword">nil</span> <span class="comment">// ARC = 0</span>
+</code></pre><pre><code><span class="keyword">class</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> phone: <span class="type">Phone</span>?
+    <span class="keyword">init</span> (name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+    }
+}
+
+<span class="keyword">class</span> Phone {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+    }
+}
+</code></pre><h2>Retain Cycle是什麼，怎麼發生的?</h2><p>Retain Cycle就是指物件存在記憶體中，但是不知道什麼原因所以無法被釋放。 當兩個物件互相引用時就有可能會發生Retain Cycle，以下面的例子來說明好了，可以邊看邊對照。</p><h3>故事版</h3><p>在遙遠的宇宙中，有兩顆星星。這兩顆星星互相吸引，彷彿注定要一起閃耀，但他們的相遇並不如表面上看起來那麼簡單。</p><p>我跟女朋友很喜歡觀星，有天我們找到兩顆超漂亮的星星，我們決定把它們變成我們的並且取名為<code>Shelly</code>跟<code>Ben</code>，這兩顆星星互相吸引，我感覺它們有某種連結就像是對情侶，所以他們在宇宙中建立了一條神秘的聯繫，這就像是將他們的光芒結合在一起。</p><p>某一天我跟女朋友已經不喜歡觀星了，決定不再管那些星星，斷開我們跟星星之間的結繫，但星星的光芒並沒有消失。這是因為這兩顆星星在彼此間建立了強大的連結，就像他們在宇宙中留下了一條微弱的光芒之線，使它們互相引用。</p><p>儘管我們不再觀察這些星星也找不到它們，但這些光芒仍然存在，因為ARC保持著它們的存在。它們將永遠閃耀在宇宙中，無法再被引用，就像永遠無法再見面的舊情人。</p><p>這個故事反映了ARC的運作原理。即使物件之間的引用關係已經斷開，但當ARC還保持對它們的引用時，它們將繼續存在，無法被釋放。ARC確保了記憶體的正確管理，但也提醒我們要謹慎處理引用，以避免出現意外的情況。</p><h3>程式碼版</h3><p>故事中用到的<code>Star</code>跟<code>Person</code>的類別可以至下一段程式碼查看</p><pre><code><span class="keyword">var</span> me: <span class="type">Person</span> = <span class="type">Person</span>(name: <span class="string">"me"</span>)
+<span class="keyword">var</span> girlfriend: <span class="type">Person</span> = <span class="type">Person</span>(name: <span class="string">"girlfriend"</span>)
+<span class="comment">// 我跟女朋友很喜歡觀星，有天我們各自找到超漂亮的星星，我們決定把那些星星變成我們的並且取名為`Shelly`跟`Ben`</span>
+var shelly: <span class="type">Star</span> = <span class="type">Star</span>(name: <span class="string">"Shelly"</span>) <span class="comment">// shelly ARC = 1</span>
+<span class="keyword">var</span> ben: <span class="type">Star</span> = <span class="type">Star</span>(name: <span class="string">"Ben"</span>) <span class="comment">// ben ARC = 1</span>
+
+me.<span class="property">star</span> = ben
+girlfriend.<span class="property">star</span> = shelly
+
+<span class="comment">// 這兩顆星星互相吸引，我感覺它們有某種連結就像是對情侶，所以他們在宇宙中建立了一條神秘的聯繫，這就像是將他們的光芒結合在一起。</span>
+ben.<span class="property">linkStar</span> = shelly <span class="comment">// ben ARC = 2</span>
+shelly.<span class="property">linkStar</span> = ben <span class="comment">// shelly ARC = 2
+
+// 某一天我跟女朋友已經不喜歡觀星了，決定不再管那些星星，斷開我們跟星星之間的結繫</span>
+me.<span class="property">star</span> = <span class="keyword">nil</span> <span class="comment">// ben ARC = 1</span>
+girlfriend.<span class="property">star</span> = <span class="keyword">nil</span> <span class="comment">// shelly ARC = 1
+
+// 但星星的光芒並沒有消失。這是因為這兩顆星星在彼此間建立了強大的連結，就像他們在宇宙中留下了一條微弱的光芒之線，使它們互相引用。
+// 儘管我們不再觀察這些星星也找不到它們，但這些光芒仍然存在，因為ARC保持著它們的存在。它們將永遠閃耀在宇宙中，無法再被引用，就像永遠無法再見面的舊情人。
+// 這個故事反映了自動引用計數（ARC）的運作原理。即使物件之間的引用關係已經斷開，但當ARC還保持對它們的引用時，它們將繼續存在，無法被釋放。ARC確保了記憶體的正確管理，但也提醒我們要謹慎處理引用，以避免出現意外的情況。</span>
+</code></pre><pre><code><span class="keyword">class</span> Person {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> star: <span class="type">Star</span>?
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+    }
+}
+
+<span class="keyword">class</span> Star {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> linkStar: <span class="type">Star</span>?
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.<span class="property">name</span> = name
+    }
+}
+</code></pre><h2>如何避免Memory Leak</h2><p>前面說的Retain Cycle就可能會造成Memory Leak</p><ul><li>Retain Cycle就是兩物件之間強引用（Strong Reference）</li><li>Memory Leak就是物件存在記憶體中，但是程式已經存取不到也無法釋放</li></ul><p>這邊要介紹兩個Keyword來解決問題，這兩個方法的核心原理都是這個物件不會加入ARC進行計數， 第一個是<strong>weak</strong>，就在宣告變數的前面加上<code>weak</code>就好了！</p><pre><code><span class="keyword">weak var</span> star: <span class="type">Star</span>?
+</code></pre><p>第二個是<strong>unowned</strong>，跟<code>weak</code>差在optional的部分，當你確認這個物件在它生命週期結束前都不會變成<code>nil</code>就可以使用它</p><pre><code><span class="keyword">unowned var</span> star: <span class="type">Star</span>
+</code></pre><p>簡單來說</p><ul><li><code>weak</code>用來修飾<code>optional</code></li><li><code>unowned</code>用來修飾<code>non-optional</code></li></ul><h2>Reference</h2><ul><li><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/">The Swift Programming Language (5.9) - Automatic Reference Counting</a></li><li><a href="https://chunyili200556.medium.com/">ChunYi LI</a> 的 <a href="https://medium.com/one-two-swift/arc-%E8%A8%98%E6%86%B6%E9%AB%94%E7%AE%A1%E7%90%86-weak-unowned-b3f5ae4239c7">Swift基礎 — ARC 記憶體管理Weak 、Unowned</a></li></ul></div></article><div class="comment-container"><script src="https://utteranc.es/client.js" repo="vickcoo/vickcoo.github.io.comment" issue-term="title" theme="github-light" crossorigin="anonymous" async></script></div></div><footer><p>Generated using <a href="https://github.com/johnsundell/publish">Publish</a></p><p><a href="/feed.rss">RSS feed</a></p></footer></body></html>

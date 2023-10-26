@@ -43,6 +43,10 @@ body {
     text-align: center;
 }
 
+p {
+    line-height: 25px;
+}
+
 .content a {
     text-decoration: none;
     border-bottom: 3px solid #037aff;
@@ -157,7 +161,12 @@ h1 {
 }
 
 h2 {
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
+/*    border-bottom: 1px solid #888;*/
+}
+
+h3 {
+    margin: 15px 0 0 0;
 }
 
 a {
@@ -294,15 +303,6 @@ pre {
     border-radius: 14px;
 }
 
-code {
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 2px 4px;
-    font-family: "Code";
-    font-size: 13px;
-    font-weight: bold;
-}
-
 pre code {
     font-family: "Code", monospace;
     background-color: inherit;
@@ -315,6 +315,10 @@ pre code {
     white-space: pre;
     font-weight: normal;
     -webkit-overflow-scrolling: touch;
+}
+
+pre code::-webkit-scrollbar {
+  display: none;
 }
 
 pre code .keyword {
