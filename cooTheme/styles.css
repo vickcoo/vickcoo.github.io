@@ -303,6 +303,15 @@ pre {
     border-radius: 14px;
 }
 
+code {
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 0px 4px;
+    font-family: "Code";
+/*    font-size: 13px;*/
+/*    font-weight: bold;*/
+}
+
 pre code {
     font-family: "Code", monospace;
     background-color: inherit;
@@ -311,7 +320,7 @@ pre code {
     color: #ffffff;
     line-height: 1.4em;
     font-size: 1em;
-    overflow-x: auto;
+    overflow-x: hidden;
     white-space: pre;
     font-weight: normal;
     -webkit-overflow-scrolling: touch;
