@@ -335,7 +335,7 @@ pre code {
     color: #ffffff;
     line-height: 1.4em;
     font-size: 1em;
-    overflow-x: hidden;
+    overflow-x: scroll;
     white-space: pre;
     font-weight: normal;
     -webkit-overflow-scrolling: touch;
